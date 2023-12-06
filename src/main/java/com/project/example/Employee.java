@@ -14,8 +14,10 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "_id")
 	private Integer id;
+	
 	@Column(name = "emp_name", nullable = false, length = 40)
 	private String name;
+	
 	@Column(name = "emp_sal", nullable = false, length = 10, scale = 8, precision=2)
 	private Double salary;
 
