@@ -9,33 +9,26 @@ public class App {
 
 		//checkSessionFactory();
 		//insertRecord();
-		modifyRecord();
-		//deleteRecord();
+		//modifyRecord();
+		deleteRecord();
 		//getAnyObject();
 	}
 
 	private static void getAnyObject() {
 		Session session = HibernetUtil.getSessionFactory().openSession();
-		Transaction tn = null;
-		try {
-			tn=session.beginTransaction();
-			Employee e1 = new Employee(1,"Ravi", 2000.00);
-			Employee emp = session.get(Employee.class, 4);
-			System.out.println(emp);
-			
-		}
-		catch(Exception e)
-		{
-			tn.rollback();
-			System.out.println("Exception ocurred");
-		}
+		//Employee emp = session.get(Employee.class, 6);
+		Employee employee = session.load(Employee.class, 100);
+		System.out.println(employee);
 		session.close();
 		
 	}
 
 	private static void deleteRecord() {
-		// TODO Auto-generated method stub
-		
+		Session session = HibernetUtil.getSessionFactory().openSession();
+		Employee employee = new Employee(7,"Rahul",0.0);
+		session.delete(employee);
+		session.beginTransaction().commit();
+		session.close();
 	}
 
 	private static void modifyRecord() {
